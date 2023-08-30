@@ -1,0 +1,20 @@
+/SchoolappReactFront-End/react-schoolapp/node_modules
+/SchoolappReactFront-End/react-schoolapp/.pnp
+.pnp.js
+
+# testing
+/SchoolappReactFront-End/react-schoolapp/coverage
+
+# production
+/SchoolappReactFront-End/react-schoolapp/build
+
+# misc
+/SchoolappReactFront-End/react-schoolapp/.DS_Store
+/SchoolappReactFront-End/react-schoolapp/.env.local
+/SchoolappReactFront-End/react-schoolapp.env.development.local
+/SchoolappReactFront-End/react-schoolapp/.env.test.local
+/SchoolappReactFront-End/react-schoolapp/.env.production.local
+
+/SchoolappReactFront-End/react-schoolapp/npm-debug.log*
+/SchoolappReactFront-End/react-schoolapp/yarn-debug.log*
+/SchoolappReactFront-End/react-schoolapp/yarn-error.log*
