@@ -76,3 +76,6 @@ D:\C#VS22\SchoolApp\SchoolApp\obj\Debug\net7.0\refint\SchoolApp.dll
 D:\C#VS22\SchoolApp\SchoolApp\obj\Debug\net7.0\SchoolApp.pdb
 D:\C#VS22\SchoolApp\SchoolApp\obj\Debug\net7.0\SchoolApp.genruntimeconfig.cache
 D:\C#VS22\SchoolApp\SchoolApp\obj\Debug\net7.0\ref\SchoolApp.dll
+D:\C#VS22\SchoolApp\SchoolApp\bin\Debug\net7.0\SchoolappReactFront-End\react-schoolapp\package-lock.json
+D:\C#VS22\SchoolApp\SchoolApp\bin\Debug\net7.0\SchoolappReactFront-End\react-schoolapp\package.json
+D:\C#VS22\SchoolApp\SchoolApp\bin\Debug\net7.0\SchoolappReactFront-End\react-schoolapp\public\manifest.json

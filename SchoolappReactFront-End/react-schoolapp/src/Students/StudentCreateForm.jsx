@@ -29,34 +29,34 @@ function StudentCreateForm() {
   };
 
   return (
-    <div>
+    <div className="container" style={{ maxWidth: "80%", margin: "0 auto" }}>
       <h2>Nuevo Estudiante</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="document">Documento:</label>
-          <input type="number" name="document" value={studentData.document} onChange={handleInputChange} />
+      <form className='row g-3' onSubmit={handleSubmit}>
+        <div className='col-md-6'>
+          <label className='form-label' htmlFor="name">Nombre:</label>
+          <input className='form-control' type="text" name="name" value={studentData.name} onChange={handleInputChange} required/>
         </div>
-        <div>
-          <label htmlFor="name">Nombre:</label>
-          <input type="text" name="name" value={studentData.name} onChange={handleInputChange} />
+        <div className='col-md-6'>
+          <label className='form-label' htmlFor="surname">Apellido:</label>
+          <input className='form-control' type="text" name="surname" value={studentData.surname} onChange={handleInputChange} />
         </div>
-        <div>
-          <label htmlFor="surname">Apellido:</label>
-          <input type="text" name="surname" value={studentData.surname} onChange={handleInputChange} />
+        <div className='col-md-2'>
+          <label className='form-label' htmlFor="age">Edad:</label>
+          <input className='form-control' type="number" name="age" value={studentData.age} onChange={handleInputChange} />
         </div>
-        <div>
-          <label htmlFor="age">Edad:</label>
-          <input type="number" name="age" value={studentData.age} onChange={handleInputChange} />
+        <div className='col-md-4'>
+          <label className='form-label' htmlFor="phone">Telefono:</label>
+          <input className='form-control' type="text" name="phone" value={studentData.phone} onChange={handleInputChange} />
         </div>
-        <div>
-          <label htmlFor="direction">Dirección:</label>
-          <input type="text" name="direction" value={studentData.direction} onChange={handleInputChange} />
+        <div className='col-md-6'>
+          <label className='form-label' htmlFor="document">Documento:</label>
+          <input className='form-control' type="number" name="document" value={studentData.document} onChange={handleInputChange} />
         </div>
-        <div>
-          <label htmlFor="phone">Telefono:</label>
-          <input type="text" name="phone" value={studentData.phone} onChange={handleInputChange} />
+        <div className='col-12'>
+          <label className='form-label' htmlFor="direction">Dirección:</label>
+          <input className='form-control' type="text" name="direction" value={studentData.direction} onChange={handleInputChange} />
         </div>
-        <button type="submit">Crear</button>
+        <button className='btn btn-primary' type="submit">Crear</button>
       </form>
     </div>
   );
