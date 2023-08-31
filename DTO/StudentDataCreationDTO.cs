@@ -2,7 +2,7 @@
 
 namespace SchoolApp.DTO
 {
-    public class StudentDataCreation
+    public class StudentDataCreationDTO
     {
         [Required]
         public int Document { get; set; }
