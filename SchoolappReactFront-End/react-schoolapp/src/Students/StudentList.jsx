@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 function Studentlist(){
     const Navi = useNavigate();
-    const [Error,setError] = useState("");
+    const [Error,setError] = useState(null);
     const [students, setStudent] = useState([]);
 
   useEffect(() => {
@@ -22,33 +22,33 @@ function Studentlist(){
       const handleDelete = async (studentId) => {
         try {
             const response = await axios.delete(`https://localhost:44339/api/Students/Delete/${studentId}`)
-            if(response.status === 400){
-                setError("El estudiante seleccionado tiene actualmente una o mas materias asignadas no se puede eliminar");
-            }else{
+            if(response.status == 200){
                 Navi(`/`);
                 refreshStudentList();
-            }
-
-          
-
+            }    
         } catch (error) {
             console.error('Error deleting Student:', error);
+            if(error.response && error.response.status == 400){
+                setError("El estudiante seleccionado tiene actualmente una o mas materias asignadas no se puede eliminar");
+            }else{
+                setError('algo salio mal en el envio de la información.');
+            }
         }
+
       };
 
-      const refreshStudentList = () => {
-        axios.get('https://localhost:44339/api/Students/Getlist')
+      const refreshStudentList = async () => {
+        await axios.get('https://localhost:44339/api/Students/Getlist')
             .then(response => setStudent(response.data))
             .catch(error => console.error('Error fetching subjects:', error));
       };
     return(
         <div className="container" style={{ maxWidth: "80%", margin: "0 auto" }}>
-            {Error && <div className="error-message">{Error}</div>}   
             <h2>Estudiantes</h2> 
-            <button className="btn btn-primary" onClick={Navegatetoform}>New Student</button>
+            <button className="btn btn-primary" onClick={Navegatetoform}>Nuevo estudiante</button>
             {students.length > 0 ? (
             <table className="table">
-            <thead class="table-dark">
+            <thead className="table-dark">
                     <tr>
                         <th>Nombre</th>
                         <th>Apellido</th>
@@ -69,7 +69,7 @@ function Studentlist(){
                             <td>{student.age}</td>
                             <td><Link to={`/subjectassigner/${student.studentId}`} className="btn btn-secondary">Asignar Materia</Link></td>
                             <td><Link to={`/studentupdate/${student.studentId}`} className="btn btn-warning">Actualizar</Link></td>
-                            <td><button onClick={() => handleDelete(student.studentId)} className="btn btn-danger">Eliminar</button></td>
+                            <td><button onClick={() => handleDelete(student.studentId)} className="btn btn-danger">Eliminar</button>  {error && <div className="error-message" style={{ color: 'red' }}>{error}</div>}</td>
                         </tr>
                     ))}
                 </tbody>
@@ -77,7 +77,9 @@ function Studentlist(){
         ) : (
             <p>No hay estudiantes disponibles.</p>
           )}
+          
         </div>
+        
     )
 
 }
