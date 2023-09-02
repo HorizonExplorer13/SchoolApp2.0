@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import SubjectData from '../Model/SubjectData'; // Importa el DTO
+import SubjectData from '../Model/SubjectData';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -36,19 +36,19 @@ function SubjectForm({ onSubmit }) {
   };
 
   return (
-  <div>
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label htmlFor="code">Code:</label>
-        <input type="text" id="code" name="code" value={subjectData.code} onChange={handleInputChange}/>
+  <div className="container" style={{ maxWidth: "80%", margin: "0 auto" }}>
+    <h2>Nueva Materia</h2>
+    <form className='row g-3' onSubmit={handleSubmit}>
+      <div className='col-md-6'>
+        <label className='fomr-label' htmlFor="code">Codigo:</label>
+        <input className='form-control' type="text" id="code" name="code" value={subjectData.code} onChange={handleInputChange}/>
       </div>
-      <div>
-        <label htmlFor="name">Name:</label>
-        <input type="text" id="name" name="name" value={subjectData.name} onChange={handleInputChange}/>
+      <div className='col-md-6'>
+        <label className='fomr-label' htmlFor="name">Nombre:</label>
+        <input className='form-control' type="text" id="name" name="name" value={subjectData.name} onChange={handleInputChange}/>
       </div>
-      <button type="submit">Send</button>
+      <button className='btn btn-primary' type="submit">Crear</button>
     </form>
-
   </div>
     
   );

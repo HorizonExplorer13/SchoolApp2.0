@@ -14,7 +14,7 @@ function AcademicReport(){
             <h2>Academic Report</h2>
             <div className="table-responsive">
             <table className="table">
-                <thead class="table-light">
+                <thead className="thead-info">
                     <th>Año</th>
                     <th>Estudiante</th>
                     <th>Documento</th>
@@ -27,16 +27,16 @@ function AcademicReport(){
                 </thead>
                 <tbody>
                     {reports.map(report => (
-                        <tr key={report.reportId}>
-                            <td>{report.year}</td>
-                            <td>{report.studentName}</td>
-                            <td>{report.studentDocument}</td>
-                            <td>{report.subjectName}</td>
-                            <td>{report.subjectCode}</td>
+                        <tr key={report.Id}>
+                            <td>{report.year == "null"? " " : report.year}</td>
+                            <td>{report.studentName == "null"? " " : report.studentName}</td>
+                            <td>{report.studentDocument == "null"? " " : report.studentDocument}</td>
+                            <td>{report.subjectName == "null"? " " : report.subjectName}</td>
+                            <td>{report.subjectCode == "null"? " " : report.subjectCode}</td>
                             <td>{report.professorName == "null"? " " : report.professorName}</td>
                             <td>{report.professorDocument == "null"? " " : report.professorDocument}</td>
-                            <td>{report.grade}</td>
-                            <td>{report.grade >= 3.0 ? "Si" : "No"}</td>
+                            <td>{report.grade == "null"? " " : report.grade}</td>
+                            <td>{report.grade == "null"? " " : report.grade >= 3.0 ? "Si" : "No" }</td>
                         </tr>
                     ))}
                 </tbody>

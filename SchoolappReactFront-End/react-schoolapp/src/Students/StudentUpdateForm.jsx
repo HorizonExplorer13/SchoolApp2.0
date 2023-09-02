@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import StudentData from '../Model/StudentData'; // Asegúrate de que la ruta sea correcta
+import StudentData from '../Model/StudentData'; 
 import { useParams, useHistory, useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
+//import '../Utilitys/Forms.css';
 
 function StudentUpdateForm({refreshStudentList}) {
   const Nav = useNavigate();
@@ -44,35 +45,36 @@ function StudentUpdateForm({refreshStudentList}) {
   };
 
   return (
-    <div>
+    <div className="container" style={{ maxWidth: "80%", margin: "0 auto" }}>
       <h2>Actualizar Estudiante</h2>
       {error && <p style={{ color: 'red' }}>{error}</p>}
-      <form onSubmit={handleUpdate}>
-        <div>
-          <label htmlFor="document">Documento:</label>
-          <input type="number" name="document" value={studentData.document} onChange={handleInputChange} />
+      <form className='row g-3' onSubmit={handleUpdate}>
+      <div className='col-md-6'>
+          <label className='form-label' htmlFor="name">Nombre:</label>
+          <input className='form-control' type="text" name="name" value={studentData.name} onChange={handleInputChange} />
         </div>
-        <div>
-          <label htmlFor="name">Nombre:</label>
-          <input type="text" name="name" value={studentData.name} onChange={handleInputChange} />
-        </div>
-        <div>
+        <div className='col-md-6'>
           <label htmlFor="surname">Apellido:</label>
           <input type="text" name="surname" value={studentData.surname} onChange={handleInputChange} />
         </div>
-        <div>
+        <div className='col-md-2'>
           <label htmlFor="age">Edad:</label>
           <input type="number" name="age" value={studentData.age} onChange={handleInputChange} />
         </div>
-        <div>
-          <label htmlFor="direction">Direccion:</label>
-          <input type="text" name="direction" value={studentData.direction} onChange={handleInputChange} />
-        </div>
-        <div>
+        <div className='col-md-4'>
           <label htmlFor="phone">Telefono:</label>
           <input type="text" name="phone" value={studentData.phone} onChange={handleInputChange} />
         </div>
-        <button type="submit" >Actualizar</button>
+        <div className='col-md-6'>
+          <label className='' htmlFor="document">Documento:</label>
+          <input className='form-control' type="number" name="document" value={studentData.document} onChange={handleInputChange} />
+        </div>
+        <div className='col-md-12'>
+          <label htmlFor="direction">Direccion:</label>
+          <input type="text" name="direction" value={studentData.direction} onChange={handleInputChange} />
+        </div>
+
+        <button className='btn btn-primary' type="submit" >Actualizar</button>
       </form>
     </div>
   );

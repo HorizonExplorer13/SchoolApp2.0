@@ -37,8 +37,9 @@ namespace SchoolApp.Controllers
             return Ok(student);
         }
         [HttpPost("Create")]
-        public async Task<IActionResult> CreateStundent([FromBody] StudentDataCreation student)
+        public async Task<IActionResult> CreateStundent([FromBody] StudentDataCreationDTO student)
         {
+
             var Student = await dbContext.students.FirstOrDefaultAsync(p => p.Name == student.Name && p.Surname == student.Surname);
             if (Student == null)
             {

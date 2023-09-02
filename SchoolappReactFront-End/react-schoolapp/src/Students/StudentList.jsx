@@ -69,7 +69,7 @@ function Studentlist(){
                             <td>{student.age}</td>
                             <td><Link to={`/subjectassigner/${student.studentId}`} className="btn btn-secondary">Asignar Materia</Link></td>
                             <td><Link to={`/studentupdate/${student.studentId}`} className="btn btn-warning">Actualizar</Link></td>
-                            <td><button onClick={() => handleDelete(student.studentId)} className="btn btn-danger">Eliminar</button>  {error && <div className="error-message" style={{ color: 'red' }}>{error}</div>}</td>
+                            <td><button onClick={() => handleDelete(student.studentId)} className="btn btn-danger">Eliminar</button>  {Error && <div className="error-message" style={{ color: 'red' }}>{error}</div>}</td>
                         </tr>
                     ))}
                 </tbody>

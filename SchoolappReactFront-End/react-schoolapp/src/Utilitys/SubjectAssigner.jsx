@@ -58,17 +58,17 @@ const handleInputChange = () =>{
 }
 
 return(
-    <div>
+    <div className='container' style={{ maxWidth: "80%", margin: "0 auto" }}>
         <h2>Assign Student Subject</h2>
         {student ? <p>Assigning subject to {student.name}</p> : <p>Loading student ...</p>}
-        <form onSubmit={handleSubmit}>
-            <div>
-                <label htmlFor='year'>Year:</label>
-                <input type='number' id='year' value={year} onChange={(e) => { setYear(e.target.value); handleInputChange(); }}/>
+        <form className='row g-3'  onSubmit={handleSubmit}>
+            <div className='col-md-6'>
+                <label className='form-label' htmlFor='year'>Year:</label>
+                <input className='form-control' type='number' id='year' value={year} onChange={(e) => { setYear(e.target.value); handleInputChange(); }}/>
             </div>
-        <div>
-          <label htmlFor="subject">Select Subject:</label>
-          <select id="subject" value={selectedSubject} onChange={(e) => { setSelectedSubject(e.target.value); handleInputChange(); }}>
+        <div className='col-md-6'>
+          <label className='form-label' htmlFor="subject">Select Subject:</label>
+          <select class="form-select" id="subject" value={selectedSubject} onChange={(e) => { setSelectedSubject(e.target.value); handleInputChange(); }}>
             <option value="">Select a subject</option>
             {subjects.map(subject => (
               <option key={subject.subjectId} value={subject.subjectId}>{subject.name}</option>
@@ -79,7 +79,7 @@ return(
           <label htmlFor="grade">Grade:</label>
           <input type="number" id="grade" value={grade} onChange={(e) => { setGrade(e.target.value); handleInputChange(); }}/>
         </div>
-        <button type="submit">Assign Subject</button>
+        <button className='btn-btn primary' type="submit">Assign Subject</button>
         </form>
         {errorM && <p style={{ color: 'red' }}>{errorM}</p>}
     </div>
