@@ -1,9 +1,17 @@
 export function ValidationNames(value){
     if (!value || !/^[A-Z].*/.test(value)) {
-        return "Ingresa un nombre válido ( este campo debe iniciar con mayúscula).";
+        return "Ingresa un nombre válido (este campo debe iniciar con mayúscula).";
 }
 return null;
 }
+
+export function ValidationSurnames(value){
+    if (!value || !/^[A-Z].*/.test(value)) {
+        return "Ingresa un apellido válido (este campo debe iniciar con mayúscula).";
+}
+return null;
+}
+
 
 export function ValidatateDoc(value){
     if(!value || value.length != 10){

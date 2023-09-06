@@ -1,21 +1,21 @@
-.container {
+/*.container {
     max-width: 80%;
     margin: 0 auto;
   }
 
   
-  /* Estilos para los elementos de formulario y grupos de formulario */
+
   .form-group {
     margin-bottom: 20px;
   }
   
-  /* Estilos para etiquetas de formulario */
+
   .form-label {
     font-weight: bold;
-    /* Agrega tus estilos de etiqueta aquí */
+
   }
   
-  /* Estilos para campos de entrada de formulario */
+
   .form-control {
     width: 100%;
     padding: 10px;
@@ -23,12 +23,11 @@
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 16px;
-    /* Agrega tus estilos de campo de entrada aquí */
-  }
+
+  }*/
   
-  /* Estilos para campos de entrada con errores */
-  .error-input {
-    background-color: #ffcccc; /* Fondo rojo claro para campos con errores */
-    border: 1px solid #ff0000; /* Borde rojo para campos con errores */
+
+  .error-message {
+    color: red;
     /* Agrega tus estilos de campo con error aquí */
   }

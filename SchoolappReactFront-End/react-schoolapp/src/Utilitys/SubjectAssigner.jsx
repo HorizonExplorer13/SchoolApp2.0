@@ -76,10 +76,10 @@ return(
           </select>
         </div>
         <div>
-          <label htmlFor="grade">Grade:</label>
-          <input type="number" id="grade" value={grade} onChange={(e) => { setGrade(e.target.value); handleInputChange(); }}/>
+          <label className='form-label' htmlFor="grade">Grade:</label>
+          <input className='form-control' type="number" id="grade" value={grade} onChange={(e) => { setGrade(e.target.value); handleInputChange(); }}/>
         </div>
-        <button className='btn-btn primary' type="submit">Assign Subject</button>
+        <button className='btn btn-primary' type="submit">Assign Subject</button>
         </form>
         {errorM && <p style={{ color: 'red' }}>{errorM}</p>}
     </div>

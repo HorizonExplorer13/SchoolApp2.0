@@ -13,7 +13,7 @@ function AcademicReport(){
         <div className="container" style={{ maxWidth: "80%", margin: "0 auto" }}>
             <h2>Academic Report</h2>
             <div className="table-responsive">
-            <table className="table">
+            <table className="table table-striped">
                 <thead className="thead-info">
                     <th>Año</th>
                     <th>Estudiante</th>
@@ -22,7 +22,7 @@ function AcademicReport(){
                     <th>Codigo</th>
                     <th>Profesor</th>
                     <th>Documento</th>
-                    <th>Grade</th>
+                    <th>Nota</th>
                     <th>Aprovado</th>
                 </thead>
                 <tbody>
