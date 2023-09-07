@@ -45,19 +45,19 @@ function SubjectUpdateForm({ refreshSubjectList }) {
  
 
   return (
-    <div>
+    <div className="container" style={{ maxWidth: "80%", margin: "0 auto" }}>
       <h2>Update Subject</h2>
       {error && <p style={{ color: 'red' }}>{error}</p>}
-      <form onSubmit={handleUpdate}>
-        <div>
-          <label htmlFor="code">Code:</label>
-          <input type="text" id="code" value={code} onChange={(e) => setCode(e.target.value)} />
+      <form className='row g-3' onSubmit={handleUpdate}>
+        <div className='col-md-6'>
+          <label className='fomr-label' htmlFor="code">Code:</label>
+          <input className='form-control' type="text" id="code" value={code} onChange={(e) => setCode(e.target.value)} />
         </div>
-        <div>
-          <label htmlFor="name">Name:</label>
-          <input type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} />
+        <div className='col-md-6'>
+          <label className='fomr-label' htmlFor="name">Name:</label>
+          <input className='form-control' type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} />
         </div>
-        <button type="submit" className='btn btn-primary'>Update Subject</button>
+        <button type="submit" className='btn btn-primary'>Actualizar</button>
       </form>
     </div>
   );

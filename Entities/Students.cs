@@ -8,7 +8,7 @@ namespace SchoolApp.Entities
         [Key]
         public int StudentId { get; set; }
         [Required]
-        public int Document { get; set; }
+        public string Document { get; set; }
         [Required]
         public string Name { get; set; }
         [Required]

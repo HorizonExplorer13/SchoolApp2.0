@@ -37,9 +37,10 @@ namespace SchoolApp.Controllers
             return Ok(student);
         }
         [HttpPost("Create")]
-        public async Task<IActionResult> CreateStundent([FromBody] StudentDataCreation student)
+        public async Task<IActionResult> CreateStundent([FromBody] StudentDataCreationDTO student)
         {
-            var Student = await dbContext.students.FirstOrDefaultAsync(p => p.Name == student.Name && p.Surname == student.Surname);
+
+            var Student = await dbContext.students.FirstOrDefaultAsync(p =>p.Document == student.Document && p.Name == student.Name && p.Surname == student.Surname);
             if (Student == null)
             {
                 var newstudent = new Students
@@ -60,15 +61,15 @@ namespace SchoolApp.Controllers
                 }
                 return Ok(newstudent);
             }
-            return BadRequest("there is already a stundent with this info");
+            return Conflict("there is already a stundent with this info");
 
         }
         [HttpPut("Update/{studentId}")]
         public async Task<IActionResult> UpdateStudent(int studentId, [FromBody] StudentDataUpdateDTO updateDTO)
         {
-            //var Student = await dbContext.students.FirstOrDefaultAsync(p => p.Name == updateDTO.Name && p.Surname == updateDTO.Surname);
-            //if (Student == null)
-            //{
+            var Student = await dbContext.students.FirstOrDefaultAsync(p =>p.Document == updateDTO.Document && p.Name == updateDTO.Name && p.Surname == updateDTO.Surname && p.Age == updateDTO.Age && p.Direction == updateDTO.Direction && p.Phone == updateDTO.Phone);
+            if (Student == null)
+            {
                 var student = await dbContext.students.FindAsync(studentId);
                 if (student == null)
                 {
@@ -88,8 +89,8 @@ namespace SchoolApp.Controllers
                     return Ok(student);
                 }
                 return BadRequest();
-            //}
-            //return BadRequest("There is already a student with this info ");
+            }
+            return BadRequest("There is already a student with this info ");
 
         }
 
