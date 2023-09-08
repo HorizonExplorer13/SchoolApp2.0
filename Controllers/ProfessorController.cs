@@ -40,7 +40,7 @@ namespace SchoolApp.Controllers
         [HttpPost("Create")]
         public async Task<IActionResult> CreateProfessors([FromBody] ProfessorDataCreationDTO professor)
         {
-            var Professor = await dbContext.professors.FirstOrDefaultAsync(p=> p.Name == professor.Name && p.Surname == professor.Surname);
+            var Professor = await dbContext.professors.FirstOrDefaultAsync(p=> p.Name == professor.Name && p.Surname == professor.Surname && p.SubjectId == professor.SubjectId);
             if (Professor == null)
             {
                 var newproffesor = new Professors
@@ -63,7 +63,7 @@ namespace SchoolApp.Controllers
                 }
                 return Ok(newproffesor);
             }
-            return BadRequest("there is already a professor with this info");
+            return Conflict("there is already a professor with this info");
             
         }
         [HttpPut("Update/{professorId}")]

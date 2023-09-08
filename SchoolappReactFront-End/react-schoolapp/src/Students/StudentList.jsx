@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 function Studentlist(){
     const Navi = useNavigate();
-    const [Error,setError] = useState(null);
+    const [Error,setError] = useState([]);
     const [students, setStudent] = useState([]);
 
   useEffect(() => {
@@ -23,15 +23,16 @@ function Studentlist(){
         try {
             const response = await axios.delete(`https://localhost:44339/api/Students/Delete/${studentId}`)
             if(response.status == 200){
-                Navi(`/`);
                 refreshStudentList();
+                Navi(`/studentlist`);
+                
             }    
         } catch (error) {
             console.error('Error deleting Student:', error);
             if(error.response && error.response.status == 400){
-                setError("El estudiante seleccionado tiene actualmente una o mas materias asignadas no se puede eliminar");
+                setError(prevErrors => ({ ...prevErrors, [studentId]: "El estudiante seleccionado tiene actualmente una o más materias asignadas y no se puede eliminar." }));
             }else{
-                setError('algo salio mal en el envio de la información.');
+                setError(prevErrors => ({ ...prevErrors, [studentId]: 'Algo salió mal en el envío de la información.' }));
             }
         }
 
@@ -69,7 +70,8 @@ function Studentlist(){
                             <td>{student.age}</td>
                             <td><Link to={`/subjectassigner/${student.studentId}`} className="btn btn-secondary">Asignar Materia</Link></td>
                             <td><Link to={`/studentupdate/${student.studentId}`} className="btn btn-warning">Actualizar</Link></td>
-                            <td><button onClick={() => handleDelete(student.studentId)} className="btn btn-danger">Eliminar</button>  {error && <div className="error-message" style={{ color: 'red' }}>{error}</div>}</td>
+                            <td><button onClick={() => handleDelete(student.studentId)} className="btn btn-danger">Eliminar</button>  
+                            {Error[student.studentId] && <div className="error-message" style={{ color: 'red' }}>{Error[student.studentId]}</div>}</td>
                         </tr>
                     ))}
                 </tbody>

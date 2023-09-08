@@ -4,7 +4,7 @@ namespace SchoolApp.DTO
 {
     public class StudentDataUpdateDTO
     {
-        public int Document { get; set; }
+        public string Document { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
         public int Age { get; set; }

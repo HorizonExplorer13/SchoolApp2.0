@@ -19,7 +19,7 @@ namespace SchoolApp.Controllers
         [HttpGet("Assignlist")]
         public async Task<IActionResult> list()
         {
-            var list = await dbContext.studentSubjects.ToListAsync();
+            var list = await dbContext.studentSubjects.Include(p => p.Students).Include(s => s.Subjects).ToListAsync();
             if (list == null)
             {
                 return NotFound();
@@ -51,11 +51,10 @@ namespace SchoolApp.Controllers
                     }
                 BadRequest(result);
             }
-                return BadRequest("This student has already been assigned a subject this year");
+                return Conflict("This student has already been assigned a subject this year");
 
             }
 
-        [HttpPut]
         [HttpDelete("Delete")]
         public async Task<IActionResult> DeleteAssigned()
         {
@@ -68,40 +67,23 @@ namespace SchoolApp.Controllers
             return BadRequest("something was wrong");
         }
 
+        [HttpDelete("Delete/{Id}")]
+        public async Task<IActionResult> DeleteByAssignedId(int Id)
+        {
+            var assign = await dbContext.studentSubjects.FindAsync(Id);
+            if (assign == null)
+            {
+                return NotFound();
+            }
+            dbContext.studentSubjects.Remove(assign);
+            var result = await dbContext.SaveChangesAsync();
 
-        //private async Task PostInReport()
-        //{
-        //    var reportdata = await dbContext.studentSubjects.Join(dbContext.professors,
-        //        studentSubjects => studentSubjects.SubjectId,
-        //        proffesor => proffesor.SubjectId,
-        //        (studentSubjects,proffesor)=>new Report
-        //        {
-        //            //Year = studentSubjects.Year,
-        //            //StudentDocument = studentSubjects.Students.Document,
-        //            //StudentName =studentSubjects.Students.Name,
-        //            //Code=studentSubjects.Subjects.Code,
-        //            //SubjectName=studentSubjects.Subjects.Name,
-        //            //ProfessorDocument=proffesor.Document,
-        //            //ProfessorName=proffesor.Name,
-        //            //Grade=studentSubjects.Grade,
-        //            //Aprobe = studentSubjects.Grade > 3.0? "yes":"no"
-                    
-        //        }).ToListAsync();
-        //    foreach (var report in reportdata)
-        //    {
-        //        dbContext.reports.Add(report);
-        //    }
-        //    var result = await dbContext.SaveChangesAsync();
-        //    if (result != null)
-        //    {
-        //        Console.WriteLine("report succesfuly create");
-        //    }
-        //    Console.WriteLine("there was an error");
-           
-         
-        }
-
-            
-
+            if (result != 0)
+            {
+                return Ok("the subject was succesfull delete");
+            }
+            return BadRequest();
+        }         
+      }
     }
 
