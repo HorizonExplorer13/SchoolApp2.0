@@ -18,11 +18,12 @@ function Professorlist(){
 
       }
 
-      const handleDelete = (subjectId) => {
+      const handleDelete = (professorId) => {
         try {
-            axios.delete(`https://localhost:44339/api/professors/Delete/${subjectId}`)
-            Navi(`/`);
-            refreshSubjectList();
+            axios.delete(`https://localhost:44339/api/professors/Delete/${professorId}`)
+            refreshProfessorList();
+            Navi(`/professorslist`);
+            
             
 
         } catch (error) {

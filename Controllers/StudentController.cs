@@ -115,9 +115,9 @@ namespace SchoolApp.Controllers
                     return BadRequest();
 
                 }
-                return BadRequest("This student has already relate one or more subject, pls firts remove the assigned");
+                return Conflict("This student has already relate one or more subject, pls firts remove the assigned");
             }
 
-        }
+            }
     }
 }   
