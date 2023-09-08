@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import '../Utilitys/Forms.css';
 
 
 const CreateProfessorForm = () => {
     const Nav = useNavigate();
+    const [errorD,setErrorD] = useState();
   const [subjects, setSubjects] = useState([]);
   const [formData, setFormData] = useState({
     subjectId: '',
@@ -14,6 +17,12 @@ const CreateProfessorForm = () => {
     age: '',
     direction: '',
     phone: '',
+  });
+  const [Error,setError] = useState({
+    name: "",
+    surname:"",
+    doc:"",
+    phone:"",
   });
 
   useEffect(() => {
@@ -29,6 +38,12 @@ const CreateProfessorForm = () => {
         }
       } catch (error) {
         console.error('Error fetching subjects:', error);
+        if(error.response && error.response.status == 409){
+          setErrorD('Actualmente ya hay un profesor con esta infmormacion y asignado a esta materia');
+          console.log('Actualmente ya hay un profesor con esta infmormacion y asignado a esta materia');
+        }else{
+          setErrorD('hubo un error creando al estudiante');
+        }      
       }
     }
 
@@ -39,8 +54,9 @@ const CreateProfessorForm = () => {
     const { name, value } = event.target;
     setFormData({
       ...formData,
-      [name]: value,
+      [name]: value,    
     });
+    setError({ ...Error, [name]: '' });
   };
 
   const handleSubmit = async (event) => {
@@ -60,13 +76,13 @@ const CreateProfessorForm = () => {
   };
 
   return (
-    <div>
-      <h1>Professor Management</h1>
-      <h2>Create Professor</h2>
-      <form onSubmit={handleSubmit}>
-        <label>
+    <div className="container" style={{ maxWidth: "80%", margin: "0 auto" }}>
+      <h2>Crear profesor</h2>
+      {errorD && <p style={{ color: 'red' }}>{errorD}</p>}
+      <form className='row g-3' onSubmit={handleSubmit}>
+        <label className='form-label'>
           Select Subject:
-          <select name="subjectId" value={formData.subjectId} onChange={handleInputChange}>
+          <select class="form-select" name="subjectId" value={formData.subjectId} onChange={handleInputChange}>
             {subjects.map((subject) => (
               <option key={subject.subjectId} value={subject.subjectId}>
                 {subject.name}
@@ -74,28 +90,28 @@ const CreateProfessorForm = () => {
             ))}
           </select>
         </label>
-        <label>
-          Document:
+        <label className='form-label'>
+          Documento:
           <input type="text" name="document" value={formData.document} onChange={handleInputChange} />
         </label>
         <label>
-          Name:
+          Nombre:
           <input type="text" name="name" value={formData.name} onChange={handleInputChange} />
         </label>
         <label>
-          Surname:
+          Apellido:
           <input type="text" name="surname" value={formData.surname} onChange={handleInputChange} />
         </label>
         <label>
-          Age:
+          Edad:
           <input type="number" name="age" value={formData.age} onChange={handleInputChange} />
         </label>
         <label>
-          Direction:
+          Dirección:
           <input type="text" name="direction" value={formData.direction} onChange={handleInputChange} />
         </label>
         <label>
-          Phone:
+          telefono (fijo o movil):
           <input type="text" name="phone" value={formData.phone} onChange={handleInputChange} />
         </label>
         <button type="submit">Create Professor</button>

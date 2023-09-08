@@ -25,8 +25,9 @@ function Subjectlist(){
     const handleDelete = (subjectId) => {
         try {
             axios.delete(`https://localhost:44339/api/Subjects/Delete/${subjectId}`)
-            Navi(`/`);
             refreshSubjectList();
+            Navi(`/subjectlist`);
+            
             
 
         } catch (error) {

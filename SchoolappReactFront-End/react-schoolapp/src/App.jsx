@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Navbar from "./Utilitys/Menu";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import About from "./Utilitys/About";
 import SubjectForm from "./Subjects/SubjectForm";
 import Subjectlist from "./Subjects/SubjectList";
 import SubjectData from "./Model/SubjectData";
@@ -17,6 +16,7 @@ import Professorlist from "./Professors/ProfessorsList";
 import ProfessorCreateForm from "./Professors/ProfessorsCreateForm";
 import CreateProfessorForm from "./Professors/ProfessorsCreateForm";
 import UpdateProfessorForm from "./Professors/ProfessorUpdateForm";
+import StudentSubjectList from "./Utilitys/StudentSubjects/StudentSubjectsList";
 
 function App() {
   const [shouldRefresh, setShouldRefresh] = useState(false);
@@ -29,13 +29,16 @@ function App() {
   const refreshProfessorList = () =>{
     setShouldRefresh(!shouldRefresh)
   }
+  const refreshList = () =>{
+    setShouldRefresh(!shouldRefresh)
+  }
+
   return (
     <BrowserRouter>
         <div>
       <Navbar />
       <Routes>
         <Route path="/" element={<AcademicReport />}/>
-        <Route path="/about" element={<About />}/>
         <Route path="/studentlist" element={<Studentlist refreshStudentList={refreshStudentList}/>}/>
         <Route path="/studentcreate" element={<StudentCreateForm/>}/>
         <Route path="/studentupdate/:studentId" element={<StudentUpdateForm />}/>
@@ -43,7 +46,8 @@ function App() {
         <Route path="/subjectform" element={<SubjectForm />}/>
         <Route path="/subjectupdater/:subjectId" element={<SubjectUpdateForm />}/>
         <Route path="/subjectassigner/:studentId" element={<StudentSubjectAssigner />}/>
-        <Route path="/professorslist" element={<Professorlist refreshProfessorList={refreshProfessorList}/>}/>
+        <Route path="/studentsubjectlist" element={<StudentSubjectList refreshProfessorList={refreshProfessorList}/>}/>
+        <Route path="/professorslist" element={<Professorlist refreshProfessorList={refreshList}/>}/>
         <Route path="/professorcreate" element={<CreateProfessorForm/>}/>
         <Route path="/professorupdate/:professorId" element={<UpdateProfessorForm />}/>
       </Routes>

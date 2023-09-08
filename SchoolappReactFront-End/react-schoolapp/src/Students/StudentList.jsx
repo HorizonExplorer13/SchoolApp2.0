@@ -23,8 +23,9 @@ function Studentlist(){
         try {
             const response = await axios.delete(`https://localhost:44339/api/Students/Delete/${studentId}`)
             if(response.status == 200){
-                Navi(`/studentlist`);
                 refreshStudentList();
+                Navi(`/studentlist`);
+                
             }    
         } catch (error) {
             console.error('Error deleting Student:', error);
