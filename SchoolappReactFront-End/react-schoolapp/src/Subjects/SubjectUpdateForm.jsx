@@ -11,7 +11,7 @@ function SubjectUpdateForm({ refreshSubjectList }) {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    // Obtener los detalles del subject por su ID
+    // Obtener los detalles del subject(la Materia o asignatura) por su ID
     axios.get(`https://localhost:44339/api/Subjects/GetById/${subjectId}`)
       .then(response => {
         setCode(response.data.code);
@@ -37,7 +37,7 @@ function SubjectUpdateForm({ refreshSubjectList }) {
                 
         } catch (error) {
             console.error('Error assigning student subject:', error);
-            setError("there was an error");
+            setError("Hubo un error interno actualizando la materia");
         }
       };
     }
@@ -46,8 +46,8 @@ function SubjectUpdateForm({ refreshSubjectList }) {
 
   return (
     <div className="container" style={{ maxWidth: "80%", margin: "0 auto" }}>
-      <h2>Update Subject</h2>
       {error && <p style={{ color: 'red' }}>{error}</p>}
+      <h2>Update Subject</h2>
       <form className='row g-3' onSubmit={handleUpdate}>
         <div className='col-md-6'>
           <label className='fomr-label' htmlFor="code">Code:</label>
@@ -59,6 +59,7 @@ function SubjectUpdateForm({ refreshSubjectList }) {
         </div>
         <button type="submit" className='btn btn-primary'>Actualizar</button>
       </form>
+      
     </div>
   );
 }

@@ -29,7 +29,7 @@ function Studentlist(){
             }    
         } catch (error) {
             console.error('Error deleting Student:', error);
-            if(error.response && error.response.status == 400){
+            if(error.response && error.response.status == 409){
                 setError(prevErrors => ({ ...prevErrors, [studentId]: "El estudiante seleccionado tiene actualmente una o más materias asignadas y no se puede eliminar." }));
             }else{
                 setError(prevErrors => ({ ...prevErrors, [studentId]: 'Algo salió mal en el envío de la información.' }));

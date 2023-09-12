@@ -11,7 +11,7 @@ function AcademicReport(){
     },[])
     return(
         <div className="container" style={{ maxWidth: "80%", margin: "0 auto" }}>
-            <h2>Academic Report</h2>
+            <h2>Reporte Academico </h2>
             <div className="table-responsive">
             <table className="table table-striped">
                 <thead className="thead-info">
