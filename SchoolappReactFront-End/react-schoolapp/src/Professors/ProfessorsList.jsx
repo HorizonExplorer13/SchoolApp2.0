@@ -12,17 +12,20 @@ function Professorlist(){
       .then(response => setprofesor(response.data))
       .catch(error => console.error('Error fetching professors:', error));
   }, []);
+    const Navi = useNavigate();
     const Nav = useNavigate();
     const Navegatetoform = () =>{
         Nav('/professorcreate')
 
       }
 
-      const handleDelete = (subjectId) => {
+      const handleDelete = (professorId) => {
+        console.log(professorId)
         try {
-            axios.delete(`https://localhost:44339/api/professors/Delete/${subjectId}`)
-            Navi(`/`);
-            refreshSubjectList();
+            axios.delete(`https://localhost:44339/api/professors/Delete/${professorId}`)
+            refreshProfessorList();
+            Navi(`/professorslist`);
+            
             
 
         } catch (error) {
@@ -30,8 +33,8 @@ function Professorlist(){
         }
       };
 
-      const refreshProfessorList = () => {
-        axios.get('https://localhost:44339/api/professors/Getlist')
+      const refreshProfessorList = async () => {
+        await axios.get('https://localhost:44339/api/professors/Getlist')
             .then(response => setprofesor(response.data))
             .catch(error => console.error('Error fetching professors:', error));
       };
@@ -41,7 +44,7 @@ function Professorlist(){
             <button className="btn btn-primary" onClick={Navegatetoform}>Crear profesor</button>
             {professor.length > 0 ? (
             <table className="table">
-            <thead class="table-dark">
+            <thead className="table-dark">
                     <tr>
                         <th>Nombre</th>
                         <th>Apellido</th>

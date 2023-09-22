@@ -25,17 +25,15 @@ function Subjectlist(){
     const handleDelete = (subjectId) => {
         try {
             axios.delete(`https://localhost:44339/api/Subjects/Delete/${subjectId}`)
-            Navi(`/`);
             refreshSubjectList();
-            
-
+            Navi(`/`);
         } catch (error) {
             console.error('Error deleting subject:', error);
         }
       };
 
-      const refreshSubjectList = () => {
-        axios.get('https://localhost:44339/api/Subjects/Getlist')
+      const refreshSubjectList = async () => {
+        await axios.get('https://localhost:44339/api/Subjects/Getlist')
             .then(response => setSubjects(response.data))
             .catch(error => console.error('Error fetching subjects:', error));
     };
@@ -46,7 +44,7 @@ function Subjectlist(){
             <h2>Materias</h2> 
             {subjects.length > 0 ? (
             <table className="table">
-            <thead class="table-dark">
+            <thead className="table-dark">
                     <tr>
                         <th>Codigo</th>
                         <th>Materia</th>

@@ -1,0 +1,33 @@
+/*.container {
+    max-width: 80%;
+    margin: 0 auto;
+  }
+
+  
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+
+  .form-label {
+    font-weight: bold;
+
+  }
+  
+
+  .form-control {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+
+  }*/
+  
+
+  .error-message {
+    color: red;
+    /* Agrega tus estilos de campo con error aquí */
+  }

@@ -1,23 +1,20 @@
 import React, { useState } from "react";
 import Navbar from "./Utilitys/Menu";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import About from "./Utilitys/About";
 import SubjectForm from "./Subjects/SubjectForm";
 import Subjectlist from "./Subjects/SubjectList";
-import SubjectData from "./Model/SubjectData";
 import Studentlist from "./Students/StudentList";
-import StudentSubjectForm from "./Utilitys/SubjectAssigner";
-import StudentSubjectAssigner from "./Utilitys/SubjectAssigner";
+import StudentSubjectAssigner from "./Utilitys/StudentSubjects/SubjectAssigner";
 import AcademicReport from "./Utilitys/AcademicReport";
-import UpdateSubjectForm from "./Subjects/SubjectUpdateForm";
 import SubjectUpdateForm from "./Subjects/SubjectUpdateForm";
 import StudentCreateForm from "./Students/StudentCreateForm";
 import StudentUpdateForm from "./Students/StudentUpdateForm";
 import Professorlist from "./Professors/ProfessorsList";
-import ProfessorCreateForm from "./Professors/ProfessorsCreateForm";
 import CreateProfessorForm from "./Professors/ProfessorsCreateForm";
 import UpdateProfessorForm from "./Professors/ProfessorUpdateForm";
+import StudentSubjectList from "./Utilitys/StudentSubjects/StudentSubjectsList";
 
+// Here we declared the methods to reload the pages
 function App() {
   const [shouldRefresh, setShouldRefresh] = useState(false);
   const refreshSubjectList = () => {
@@ -29,13 +26,20 @@ function App() {
   const refreshProfessorList = () =>{
     setShouldRefresh(!shouldRefresh)
   }
+  const refreshList = () =>{
+    setShouldRefresh(!shouldRefresh)
+  }
+  const refreshReport = () => {
+    setShouldRefresh(!shouldRefresh)
+  }
+
   return (
+    // we set the routes or Url that will represent each pages in the app.
     <BrowserRouter>
         <div>
       <Navbar />
       <Routes>
-        <Route path="/" element={<AcademicReport />}/>
-        <Route path="/about" element={<About />}/>
+        <Route path="/" element={<AcademicReport refreshReport={refreshReport}/>}/>
         <Route path="/studentlist" element={<Studentlist refreshStudentList={refreshStudentList}/>}/>
         <Route path="/studentcreate" element={<StudentCreateForm/>}/>
         <Route path="/studentupdate/:studentId" element={<StudentUpdateForm />}/>
@@ -43,7 +47,8 @@ function App() {
         <Route path="/subjectform" element={<SubjectForm />}/>
         <Route path="/subjectupdater/:subjectId" element={<SubjectUpdateForm />}/>
         <Route path="/subjectassigner/:studentId" element={<StudentSubjectAssigner />}/>
-        <Route path="/professorslist" element={<Professorlist refreshProfessorList={refreshProfessorList}/>}/>
+        <Route path="/studentsubjectlist" element={<StudentSubjectList refreshProfessorList={refreshProfessorList}/>}/>
+        <Route path="/professorslist" element={<Professorlist refreshProfessorList={refreshList}/>}/>
         <Route path="/professorcreate" element={<CreateProfessorForm/>}/>
         <Route path="/professorupdate/:professorId" element={<UpdateProfessorForm />}/>
       </Routes>

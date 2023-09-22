@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+// Here we create inside a function a bar that contains a menu with the fundamental pages from the app. 
 function Navbar() {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -22,6 +23,9 @@ function Navbar() {
                 </li>
                 <li className="nav-item">
                   <Link className="nav-link" to="/professorslist">Profesores</Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/studentsubjectlist">Asignaciones</Link>
                 </li>
             </ul>
           </div>
