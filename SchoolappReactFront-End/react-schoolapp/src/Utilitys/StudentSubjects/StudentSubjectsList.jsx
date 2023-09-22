@@ -2,13 +2,13 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-
+//this line declare the class, function, component, where we show the assigns of each subject for each student.
 function StudentSubjectList(){
 
     const [Assigns, setAssigs] = useState([]);
 
     useEffect(() => {
-        // Hacer una solicitud GET para obtener las asignaturas
+        //
         axios.get('https://localhost:44339/api/subjectAssigner/Assignlist')
           .then(response => setAssigs(response.data))
           .catch(error => console.error('Error fetching Students:', error));
@@ -19,8 +19,7 @@ function StudentSubjectList(){
             const response = await axios.delete(`https://localhost:44339/api/subjectAssigner/Delete/${assingId}`)
             if(response.status == 200){
                 refreshList();
-                Navi(`/studentsubjectlist`);
-                
+                Navi(`/studentsubjectlist`);           
             }    
         } catch (error) {
             console.error('Error deleting Student:', error);
@@ -51,6 +50,7 @@ function StudentSubjectList(){
             <tbody>
                 {Assigns.map(Assign => (
                     <tr key={Assign.id}>
+                        <td>{Assign.year == "null"? " " : Assign.year}</td>
                         <td>{Assign.students ? Assign.students.name : " "}</td>
                         <td>{Assign.students ? Assign.students.document : " "}</td>
                         <td>{Assign.students ? Assign.subjects.code : " "}</td>
@@ -62,11 +62,8 @@ function StudentSubjectList(){
         </table>
     ) : (
         <p>No hay asignaciones disponibles.</p>
-      )}
-      
+      )}   
     </div>
       )
-
 }
-
 export default StudentSubjectList;
