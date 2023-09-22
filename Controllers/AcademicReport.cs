@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using SchoolApp.DTO;
 using SchoolApp.Entities;
+using SchoolApp.Utilities;
 
 namespace SchoolApp.Controllers
 {
@@ -14,16 +16,42 @@ namespace SchoolApp.Controllers
         {
             this.dbContext = dbContext;
         }
-        [HttpGet("GetReport")]
-        public async Task<IActionResult> GetReport()
+        [HttpGet("GetReport/{PageNumber}")]
+        public async Task<IActionResult> GetReport(int PageNumber, [FromQuery] PaginationDTO pagination)
         {
-            var report = await dbContext.ReportView.ToListAsync();
+            if (PageNumber != 0 && PageNumber != 1)
+            {
+                pagination.PageNumber = PageNumber;
+            }
+            else
+            {
+                pagination.PageNumber = 1;
+            }
+            var queryable = dbContext.ReportView.AsQueryable();
+            await HttpContext.HeadersInsert(queryable);
+
+            var report = await queryable.Pager(pagination).ToListAsync();
+            var Totalitems = await dbContext.ReportView.CountAsync();
+            var Totalpages = (int)Math.Ceiling((double)Totalitems / pagination.RowPerPage);
+            HttpContext.Response.Headers.Add("Total-pages", Totalpages.ToString());
+
             if (report == null)
             {
                 return NotFound();
             }
 
-            return Ok(report);
-        }     
+            //var Adddata = new
+            //{
+            //    totalPages = Totalpages
+            //};
+
+            //var reportCOM = new
+            //{
+            //    Report = report,
+            //    AddData = Adddata
+            //};
+
+                return Ok(report);
+            }     
     }
 }
