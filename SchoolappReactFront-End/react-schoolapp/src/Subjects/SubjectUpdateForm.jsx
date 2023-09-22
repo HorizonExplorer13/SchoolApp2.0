@@ -27,23 +27,18 @@ function SubjectUpdateForm({ refreshSubjectList }) {
     if(code && name){
         const updatedData = {};
         if (code) updatedData.code = code;
-        if (name) updatedData.name = name;
-    
+        if (name) updatedData.name = name;    
         // Enviar la solicitud de actualización
         try {
              await axios.put(`https://localhost:44339/api/Subjects/Update/${subjectId}`, updatedData);
              Nav(`/subjectlist`);    
-             refreshSubjectList();
-                
+             refreshSubjectList();            
         } catch (error) {
             console.error('Error assigning student subject:', error);
             setError("Hubo un error interno actualizando la materia");
         }
       };
     }
-
- 
-
   return (
     <div className="container" style={{ maxWidth: "80%", margin: "0 auto" }}>
       {error && <p style={{ color: 'red' }}>{error}</p>}

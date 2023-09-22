@@ -29,6 +29,9 @@ function App() {
   const refreshList = () =>{
     setShouldRefresh(!shouldRefresh)
   }
+  const refreshReport = () => {
+    setShouldRefresh(!shouldRefresh)
+  }
 
   return (
     // we set the routes or Url that will represent each pages in the app.
@@ -36,7 +39,7 @@ function App() {
         <div>
       <Navbar />
       <Routes>
-        <Route path="/" element={<AcademicReport />}/>
+        <Route path="/" element={<AcademicReport refreshReport={refreshReport}/>}/>
         <Route path="/studentlist" element={<Studentlist refreshStudentList={refreshStudentList}/>}/>
         <Route path="/studentcreate" element={<StudentCreateForm/>}/>
         <Route path="/studentupdate/:studentId" element={<StudentUpdateForm />}/>

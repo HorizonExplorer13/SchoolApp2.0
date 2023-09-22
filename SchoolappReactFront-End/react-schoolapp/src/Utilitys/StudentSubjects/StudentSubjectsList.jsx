@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-
+//this line declare the class, function, component, where we show the assigns of each subject for each student.
 function StudentSubjectList(){
 
     const [Assigns, setAssigs] = useState([]);
