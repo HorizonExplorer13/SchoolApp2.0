@@ -58,7 +58,7 @@ namespace SchoolApp.Controllers
                 }
                 return Ok(result);
             }
-            return Conflict("this subject already exist");
+            return BadRequest("this subject already exist");
         }
      
 

@@ -17,16 +17,11 @@ function SubjectForm({ onSubmit }) {
                 //onSubmit(subjectData);
                 nav(`/subjectlist`);
                 setSubjectData(new SubjectData('', ''));
+
             }
             
         } catch (error) {
             console.error('Something was wrong sending the data',error);
-            if(error.response && error.response.status == 409){
-              setErrorD('Actualmente ya hay una materia con este codigo');
-              console.log('Actualmente ya hay una materia con este codigo');
-            }else{
-              setErrorD('hubo un error creando al la materia');
-            }      
         }
   
     }

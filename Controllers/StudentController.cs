@@ -26,7 +26,6 @@ namespace SchoolApp.Controllers
             }
             return Ok(Studentlist);
         }
-
         [HttpGet("GetById/{studentId}")]
         public async Task<IActionResult> GetById(int studentId)
         {
@@ -37,7 +36,6 @@ namespace SchoolApp.Controllers
             }
             return Ok(student);
         }
-
         [HttpPost("Create")]
         public async Task<IActionResult> CreateStundent([FromBody] StudentDataCreationDTO student)
         {
@@ -64,8 +62,8 @@ namespace SchoolApp.Controllers
                 return Ok(newstudent);
             }
             return Conflict("there is already a stundent with this info");
-        }
 
+        }
         [HttpPut("Update/{studentId}")]
         public async Task<IActionResult> UpdateStudent(int studentId, [FromBody] StudentDataUpdateDTO updateDTO)
         {
@@ -119,6 +117,7 @@ namespace SchoolApp.Controllers
                 }
                 return Conflict("This student has already relate one or more subject, pls firts remove the assigned");
             }
-        }
+
+            }
     }
 }   

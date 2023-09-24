@@ -71,6 +71,7 @@ function StudentCreateForm() {
           <label className='form-label' htmlFor="name">Nombre:</label>
           <input className={`form-control ${Error.name !== '' ? 'error-input-field' : ''}`} type="text" name="name" value={studentData.name} onChange={handleInputChange} required/>
           {Error.name && <div className='error-message'>{Error.name}</div>}
+
         </div>
         <div className={`col-md-6 form-group ${Error.surname !== '' ? 'error-input' : ''}`}>
           <label className='form-label' htmlFor="surname">Apellido:</label>
@@ -95,7 +96,8 @@ function StudentCreateForm() {
           <label className='form-label' htmlFor="direction">Dirección:</label>
           <input className='form-control' type="text" name="direction" value={studentData.direction} onChange={handleInputChange} required/>
         </div>
-        <button className='btn btn-primary' type="submit" onClick={handleSubmit}> Crear</button>    
+        <button className='btn btn-primary' type="submit" onClick={handleSubmit}> Crear</button>
+       
       </form>
     </div>
   );
