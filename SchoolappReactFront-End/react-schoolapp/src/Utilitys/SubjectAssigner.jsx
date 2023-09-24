@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
-import AssignerData from '../../Model/AssignerData'; 
+import AssignerData from '../Model/AssignerData'; 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function StudentSubjectAssigner() {
@@ -38,15 +38,16 @@ function StudentSubjectAssigner() {
         const response = await axios.post('https://localhost:44339/api/subjectAssigner/Assign', assignerData);
         if (response.status == 200) {
           console.log('Student subject assigned successfully');
-          Nav(`/`);
+          Nav(`/studentlist`);
+          // Realizar otras acciones después de guardar si es necesario
         }
       } catch (error) {
         console.error('Error assigning student subject:', error);
 
-        if (error.response && error.response.status == 409) {
-          setError('Este estudiante ya esta asigando a esta materia este año');
+        if (error.response && error.response.status == 400) {
+          setError('This student has already been assigned a subject this year');
       } else {
-        setError('Hubo un error interno asignando al estudiante');
+        setError('Something went wrong while sending the data.');
     }
   }
 }

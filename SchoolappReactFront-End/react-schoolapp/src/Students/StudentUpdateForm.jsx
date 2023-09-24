@@ -19,7 +19,7 @@ function StudentUpdateForm({refreshStudentList}) {
   });
 
   useEffect(() => {
-    // Obtener los detalles del student (estudiante) por su ID
+    // Obtener los detalles del estudiante por su ID
     axios.get(`https://localhost:44339/api/Students/GetById/${studentId}`)
       .then(response => {
         const { document, name, surname, age, direction, phone } = response.data;
@@ -59,11 +59,11 @@ function StudentUpdateForm({refreshStudentList}) {
         console.error('Error updating student:', error);
         //setError('There was an error updating the student.');
         if (error.response && error.response.status == 409) {
-          setErrorD('Actualmente ya hay un estudiante con esta informacion y asignado a esta materia este año');
-          console.log('Actualmente ya hay un estudiante con esta infmormacion y asignado a esta materia');
-        }else{
-          setErrorD('hubo un error actualizando al estudiante');
-        }   
+          setErrorD('Actualmente ya hay un estudiante con esta informacion');
+      } else {
+        //setError('Something went wrong while sending the data.');
+        console.log('Something went wrong while sending the data.');
+    }
 
       }
 
@@ -73,7 +73,6 @@ function StudentUpdateForm({refreshStudentList}) {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setStudentData((prevData) => ({ ...prevData, [name]: value }));
-    setError({ ...Error, [name]: '' });
   };
 
   return (

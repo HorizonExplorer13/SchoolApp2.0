@@ -11,7 +11,7 @@ function SubjectUpdateForm({ refreshSubjectList }) {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    // Obtener los detalles del subject(la Materia o asignatura) por su ID
+    // Obtener los detalles del subject por su ID
     axios.get(`https://localhost:44339/api/Subjects/GetById/${subjectId}`)
       .then(response => {
         setCode(response.data.code);
@@ -27,22 +27,27 @@ function SubjectUpdateForm({ refreshSubjectList }) {
     if(code && name){
         const updatedData = {};
         if (code) updatedData.code = code;
-        if (name) updatedData.name = name;    
+        if (name) updatedData.name = name;
+    
         // Enviar la solicitud de actualización
         try {
              await axios.put(`https://localhost:44339/api/Subjects/Update/${subjectId}`, updatedData);
              Nav(`/subjectlist`);    
-             refreshSubjectList();            
+             refreshSubjectList();
+                
         } catch (error) {
             console.error('Error assigning student subject:', error);
-            setError("Hubo un error interno actualizando la materia");
+            setError("there was an error");
         }
       };
     }
+
+ 
+
   return (
     <div className="container" style={{ maxWidth: "80%", margin: "0 auto" }}>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
       <h2>Update Subject</h2>
+      {error && <p style={{ color: 'red' }}>{error}</p>}
       <form className='row g-3' onSubmit={handleUpdate}>
         <div className='col-md-6'>
           <label className='fomr-label' htmlFor="code">Code:</label>
@@ -54,7 +59,6 @@ function SubjectUpdateForm({ refreshSubjectList }) {
         </div>
         <button type="submit" className='btn btn-primary'>Actualizar</button>
       </form>
-      
     </div>
   );
 }
